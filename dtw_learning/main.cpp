@@ -2,7 +2,7 @@
 #include <vector>
 #include <dtw.hpp>
 
-void findCurve(std::vector<std::vector<double>> myCurve, std::vector<std::vector<double>> compareCurve, double p) {
+float findCurve(std::vector<std::vector<double>> myCurve, std::vector<std::vector<double>> compareCurve, double p) {
 
     DTW::DTW MyDtw (myCurve, compareCurve, p);
     // The distance is calculated and stored in MyDtw.distance
@@ -48,7 +48,7 @@ std::vector<std::string> classifcation = { "Circle", "Line", "Cuadratic", "2 Pow
     }; */
 
     for(int i = 0; i < b.size(); i++) {
-        findCurve(b[i], a, p);
+        float dst = findCurve(b[i], a, p);
     }
     
     /* {
@@ -68,6 +68,7 @@ std::vector<std::string> classifcation = { "Circle", "Line", "Cuadratic", "2 Pow
         std::cout << "First pairwise distance: " << MyDtw.pairwise_vector[0][0] << std::endl;
 
         // The DTW distance matrix is stored in MyDtw.dtw_vector
+        
         // The shape is MyDtw.dtw_vector[a.size()][b.size()]
         std::cout << "The 1,1 value of the DTW distance matrix: ";
         std::cout << MyDtw.dtw_vector[1][1] << std::endl;
